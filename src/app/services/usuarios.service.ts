@@ -21,6 +21,9 @@ export class UsuariosService {
   getById(_id: string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(`${this.apiUrl}/${_id}`);
   }
+  getByIdPromise(_id: string): Promise<Usuario> {
+    return lastValueFrom(this.httpClient.get<Usuario>(`${this.apiUrl}/${_id}`));
+  }
 
   insert(usuario: Usuario): Promise<Usuario> {
     return lastValueFrom(this.httpClient.post<Usuario>(`${this.apiUrl}`, usuario));
